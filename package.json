@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Taylor-Brandon/Notes-App/issues"
   },
-  "homepage": "https://github.com/Taylor-Brandon/Notes-App#readme"
+  "homepage": "https://github.com/Taylor-Brandon/Notes-App#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
 }
