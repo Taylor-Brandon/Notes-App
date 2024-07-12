@@ -1,0 +1,23 @@
+{
+  "name": "notes-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Taylor-Brandon/Notes-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Taylor-Brandon/Notes-App/issues"
+  },
+  "homepage": "https://github.com/Taylor-Brandon/Notes-App#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
