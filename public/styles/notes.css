@@ -3,9 +3,18 @@
     margin-left: 350px;
     margin-top: -50px;
 }
-#form-box{
+#container{
     margin-left: 420px;
+    margin-top: -183px;
+    height: 877px;
+    border: 2px solid rgb(215, 207, 207);
+    border-top: 0px;
 }
-#form{
-    margin-top: -216;
+#title-input{
+    border: 0px solid white;
+    font-size: 50px;
+}
+#note-input{
+    border: 0px solid white;
+    font-size: 20px;
 }
