@@ -1,4 +1,19 @@
 let noteList = document.querySelector('.list-container');
+let noteForm = document.querySelector('#note-form');
+let saveNoteButton = document.querySelector('#save-note');
+let noteTitleInput = document.querySelector('#title-input');
+let noteTextInput = document.querySelector('#note-input');
+
+
+const show = (elem) => {
+  elem.style.display = 'inline';
+};
+
+
+const hide = (elem) => {
+  elem.style.display = 'none';
+};
+
 
 const getNotes = () =>
   fetch('/api/notes', {
@@ -11,6 +26,7 @@ const getNotes = () =>
   .catch((error) => {
     console.error('Error:', error);
   });
+
 
 const renderNotes = (notes) => {
   noteList.innerHTML = ''; 
@@ -41,8 +57,18 @@ const renderNotes = (notes) => {
   });
 };
 
+const handleRenderSaveBtn = () => {
+  if (!noteTitleInput.value.trim() || !noteTextInput.value.trim()) {
+    hide(saveNoteButton);
+  } else {
+    show(saveNoteButton);
+  }
+};
+
+
 getNotes().then(renderNotes);
 
+hide(saveNoteButton);
 
-
-
+noteTitleInput.addEventListener('keyup', handleRenderSaveBtn);
+noteTextInput.addEventListener('keyup', handleRenderSaveBtn);
