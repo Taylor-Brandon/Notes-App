@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const notes = require('./db/notes.json');
+let notes = require('./db/notes.json');
 
 const PORT = 3001;
 const app = express();
@@ -53,4 +53,14 @@ app.post('/api/notes', (req, res) => {
   }
 });
 
+app.delete('/api/notes/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+
+  notes = notes.filter(note => note.id !== id);
+  writeToFile('./db/notes.json', notes);
+  
+  res.json({ message: 'Note deleted successfully' });
+});
+
 app.listen(PORT, () => console.log(`Example app listening at http://localhost:${PORT}`));
+
