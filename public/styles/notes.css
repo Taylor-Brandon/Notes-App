@@ -5,7 +5,8 @@
 }
 #container{
     margin-left: 420px;
-    margin-top: -183px;
+    display: sticky;
+    margin-top: -485px;
     height: 877px;
     border: 2px solid rgb(215, 207, 207);
     border-top: 0px;

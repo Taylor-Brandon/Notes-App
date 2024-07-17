@@ -67,6 +67,7 @@ const handleNoteView = (e) => {
 };
 
 const renderNotes = (notes) => {
+  show(newNoteButton);
   noteList.innerHTML = ''; 
   notes.forEach(note => {
     const card = document.createElement('div');
@@ -132,5 +133,4 @@ noteTitleInput.addEventListener('input', handleRenderSaveBtn);
 noteTextInput.addEventListener('input', handleRenderSaveBtn);
 saveNoteButton.addEventListener('click', handleNoteSave);
 newNoteButton.addEventListener('click', handleNewNoteView);
-
 
