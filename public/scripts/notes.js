@@ -1,6 +1,7 @@
 let noteList = document.querySelector('.list-container');
 let noteForm = document.querySelector('#note-form');
 let saveNoteButton = document.querySelector('#save-note');
+let newNoteButton = document.querySelector('#new-note');
 let noteTitleInput = document.querySelector('#title-input');
 let noteTextInput = document.querySelector('#note-input');
 
@@ -11,6 +12,8 @@ const show = (elem) => {
 const hide = (elem) => {
   elem.style.display = 'none';
 };
+
+let activeNote = {};
 
 const getNotes = () =>
   fetch('/api/notes', {
@@ -32,6 +35,36 @@ const saveNote = (note) =>
     },
     body: JSON.stringify(note),
   });
+
+const renderActiveNote = () => {
+  hide(saveNoteButton);
+
+  if (activeNote.noteTitle) {
+    noteTitleInput.setAttribute('readonly', true);
+    noteTextInput.setAttribute('readonly', true);
+    noteTitleInput.value = activeNote.noteTitle;
+    noteTextInput.value = activeNote.noteText;
+  } else {
+    noteTitleInput.removeAttribute('readonly');
+    noteTextInput.removeAttribute('readonly');
+    noteTitleInput.value = '';
+    noteTextInput.value = '';
+  }
+};
+
+const handleNoteView = (e) => {
+  e.preventDefault();
+  const noteElement = e.target.closest('.card-body');
+  const noteTitle = noteElement.querySelector('.data-title').textContent;
+  const noteText = noteElement.querySelector('.data-text').textContent;
+
+  activeNote = {
+    noteTitle,
+    noteText,
+  };
+
+  renderActiveNote();
+};
 
 const renderNotes = (notes) => {
   noteList.innerHTML = ''; 
@@ -59,6 +92,8 @@ const renderNotes = (notes) => {
     cardBody.appendChild(trashButton);
     card.appendChild(cardBody);
     noteList.appendChild(card);
+
+    cardBody.addEventListener('click', handleNoteView);
   });
 };
 
@@ -84,6 +119,11 @@ const handleNoteSave = () => {
   });
 };
 
+const handleNewNoteView = (e) => {
+  activeNote = {};
+  renderActiveNote();
+};
+
 getNotes().then(renderNotes);
 
 hide(saveNoteButton);
@@ -91,4 +131,6 @@ hide(saveNoteButton);
 noteTitleInput.addEventListener('input', handleRenderSaveBtn);
 noteTextInput.addEventListener('input', handleRenderSaveBtn);
 saveNoteButton.addEventListener('click', handleNoteSave);
+newNoteButton.addEventListener('click', handleNewNoteView);
+
 
